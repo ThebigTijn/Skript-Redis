@@ -3,7 +3,9 @@ package nl.ThebigTijn.skriptRedis;
 import ch.njol.skript.Skript;
 import ch.njol.skript.SkriptAPIException;
 import ch.njol.skript.SkriptAddon;
+import ch.njol.skript.lang.ExpressionType;
 import lombok.Getter;
+import nl.ThebigTijn.skriptRedis.components.expressions.ExprRedisobject;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -57,7 +59,7 @@ public final class SkriptRedis extends JavaPlugin {
 		// Register Skript Addon
 		try {
 			SkriptAddon addonInstance = Skript.registerAddon(this);
-			addonInstance.loadClasses("nl.ThebigTijn.skriptRedis", "skript");
+			addonInstance.loadClasses("nl.ThebigTijn.skriptRedis", "components");
 		} catch (SkriptAPIException e) {
 			error("Skript-Redis loaded after Skript has already finished registering addons.");
 			Bukkit.getPluginManager().disablePlugin(this);
@@ -69,7 +71,7 @@ public final class SkriptRedis extends JavaPlugin {
 
 	@Override
 	public void onDisable() {
-		Jedis.close();
+		// Plugin shutdown logic
 	}
 
 	public void saveConfig(FileConfiguration config, String name) {
