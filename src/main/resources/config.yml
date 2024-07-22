@@ -1,0 +1,17 @@
+
+# debug mode
+# Default: false
+# Dont change this unless you know what you are doing.
+debug: false
+
+# Redis configuration
+
+# Redis server IP address or hostname
+# Default: localhost
+# example: 192.168.1.10
+host: localhost
+
+# Redis server port
+# Default: 6379
+# example: 25565
+port: 6379
