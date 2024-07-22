@@ -1,0 +1,6 @@
+name: Skript-Redis
+version: '0.1'
+main: nl.ThebigTijn.skriptRedis.SkriptRedis
+api-version: '1.20'
+load: STARTUP
+authors: [ ThebigTijn ]
