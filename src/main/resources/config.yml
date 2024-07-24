@@ -1,4 +1,3 @@
-
 # debug mode
 # Default: false
 # Dont change this unless you know what you are doing.
@@ -15,3 +14,9 @@ host: localhost
 # Default: 6379
 # example: 25565
 port: 6379
+
+# Redis user and password
+# Default User: blank
+# Default Password: blank
+user:
+password:

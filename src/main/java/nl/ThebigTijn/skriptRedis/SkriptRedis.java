@@ -10,6 +10,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
+import redis.clients.jedis.DefaultJedisClientConfig;
 import redis.clients.jedis.JedisPooled;
 
 import java.io.File;
@@ -26,6 +27,8 @@ public final class SkriptRedis extends JavaPlugin {
 	private FileConfiguration config;
 	@Getter
 	public static JedisPooled Jedis;
+	@Getter
+	private SkriptAddon addonInstance;
 
 	@Override
 	public void onEnable() {
@@ -42,6 +45,8 @@ public final class SkriptRedis extends JavaPlugin {
 		String host = config.getString("host");
 		int port = config.getInt("port");
 		boolean debug = config.getBoolean("debug");
+		String user = config.getString("user");
+		String password = config.getString("password");
 
 		// debug
 		if (debug) {
@@ -49,7 +54,7 @@ public final class SkriptRedis extends JavaPlugin {
 		}
 
 		// Connect to Redis server
-		Jedis = new JedisPooled(host, port);
+		Jedis = new JedisPooled(host, port, user, password);
 		if (debug) {
 			getLogger().info("Host: " + host);
 			getLogger().info("Port: " + port);
@@ -58,8 +63,8 @@ public final class SkriptRedis extends JavaPlugin {
 
 		// Register Skript Addon
 		try {
-			SkriptAddon addonInstance = Skript.registerAddon(this);
-			addonInstance.loadClasses("nl.ThebigTijn.skriptRedis", "components");
+			addonInstance = Skript.registerAddon(this);
+			addonInstance.loadClasses("nl.ThebigTijn.skriptRedis", "components.expressions");
 		} catch (SkriptAPIException e) {
 			error("Skript-Redis loaded after Skript has already finished registering addons.");
 			Bukkit.getPluginManager().disablePlugin(this);
