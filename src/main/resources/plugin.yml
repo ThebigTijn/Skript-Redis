@@ -1,5 +1,5 @@
 name: Skript-Redis
-version: '0.1.1'
+version: 'ALPHA-0.1.2'
 main: nl.ThebigTijn.skriptRedis.SkriptRedis
 api-version: '1.20'
 load: POSTWORLD

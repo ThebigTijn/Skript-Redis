@@ -50,7 +50,7 @@ public class ExprRedisobject extends SimpleExpression<String> {
 		if (key == null) {
 			return null;
 		}
-		String value = RedisAPI.get(key);
+		String value = (String) RedisAPI.get(key);
 		return new String[]{value};
 	}
 	@Override

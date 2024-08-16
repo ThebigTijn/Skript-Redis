@@ -10,7 +10,7 @@ public class RedisAPI {
 		SkriptRedis.getJedis().set(key, value);
 	}
 
-	public static String get(String key) {
+	public static Object get(String key) {
 		return SkriptRedis.getJedis().get(key);
 	}
 
